@@ -1,4 +1,4 @@
-# bashc-ubuntu-sd
+# bashrc-ubuntu-sd
 Bash RC for Ubuntu SD server
 
 1. vim .bashrc from your shell
