@@ -103,3 +103,25 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+parse_git_branch() {
+  MYPWD=`pwd`
+  if [[ "$MYPWD" =~ "/Volumes/" ]]; then
+      echo ""
+  else
+      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
+  fi
+}
+PS1='\[\033[00;33m\]\u\[\033[00;00m\]@\[\033[00;32m\]\h\[\033[00;35m\]\[\033[01;37m\]\w$(parse_git_branch)\[\033[00m\]\n\$ '
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+alias ls='ls -laFh --color=auto'
+alias bp='vim ~/.bash_profile'
+alias bp-reload='source ~/.bashrc'
+echo 'reloading from .bashrc'
+alias gf='git fetch'
+alias gaa='git add .'
+alias gc="git commit -m\""
+alias v='cd /vagrant'
+alias gr='git remote --v'
+alias gs='git status'
